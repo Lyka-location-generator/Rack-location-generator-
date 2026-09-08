@@ -472,9 +472,14 @@
       return;
     }
 
+    // Grabs last character from Area Code (e.g., 'B' from 'DSAB')
     const letter = areaCode.slice(-1);
+    
+    // Grabs first digit from Location ID and zero-pads it (e.g., '4' -> '04')
     const rawAisle = locDigits.slice(0, 1);
     const aisleNum = rawAisle.padStart(2, '0');
+    
+    // Header format: B-04
     const locHeaderText = `${letter}-${aisleNum}`;
 
     const levels = [
