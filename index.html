@@ -257,8 +257,9 @@
     }
 
     .label-container-vertical {
-      width: 2.05in !important;
-      height: 8.8in !important;
+      width: 2.0in !important;
+      height: 8.2in !important;
+      max-height: 96vh !important;
       margin: 0 auto !important;
     }
 
@@ -356,8 +357,8 @@
 
   /* Vertical Layout (Front Mode) */
   .label-container-vertical {
-    width: 2.05in;
-    height: 8.8in;
+    width: 2.0in;
+    height: 8.2in;
     background: #ffffff;
     border: 2px solid #000;
     display: flex;
@@ -391,7 +392,7 @@
 
   .label-container-vertical .barcode-svg {
     max-width: 95%;
-    height: 35px;
+    height: 32px;
   }
 
   .label-container-vertical .text-row {
@@ -405,7 +406,7 @@
   }
 
   .label-container-vertical .level-text {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 900;
     color: #000;
   }
@@ -413,7 +414,7 @@
   .label-container-vertical .check-digit {
     background: #000;
     color: #fff;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 900;
     padding: 1px 3px;
   }
@@ -423,13 +424,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 0.75in;
+    height: 0.7in;
     width: 100%;
     box-sizing: border-box;
   }
 
   .label-container-vertical .loc-text {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 900;
     color: #000;
   }
@@ -586,8 +587,8 @@
     const barcodeOptions = {
       format: "CODE128",
       lineColor: "#000000",
-      width: isHorizontal ? 1.0 : 0.9,
-      height: isHorizontal ? 36 : 30,
+      width: isHorizontal ? 1.0 : 0.85,
+      height: isHorizontal ? 36 : 28,
       displayValue: true,
       fontSize: 8,
       fontOptions: "bold",
