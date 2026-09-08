@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rack Label Generator</title>
+<title>Lyka | Rack Label Generator</title>
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Roboto+Condensed:wght@700;900&display=swap" rel="stylesheet">
 <style id="dynamic-print-style">
   @page {
     size: portrait;
@@ -14,19 +14,25 @@
 </style>
 <style>
   :root {
-    --bg-color: #12181b;
-    --card-bg: #1e272c;
-    --accent-color: #4CAF50;
-    --text-color: #f5f5f5;
-    --border-color: #37474f;
+    --lyka-dark: #112218;
+    --lyka-green: #1E392A;
+    --lyka-accent: #2D5A40;
+    --lyka-light-green: #00E676;
+    --lyka-gold: #E2B049;
+    --card-bg: #1A2820;
+    --input-bg: #111D16;
+    --text-color: #F3F7F4;
+    --border-color: #2D4436;
   }
 
   body {
     margin: 0;
-    padding: 20px;
-    font-family: 'Roboto Condensed', sans-serif;
-    background-color: var(--bg-color);
+    padding: 30px 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--lyka-dark);
+    background-image: radial-gradient(circle at 50% 0%, #1c3d2a 0%, #0d1a12 100%);
     color: var(--text-color);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,49 +40,71 @@
 
   .app-container {
     background: var(--card-bg);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-    max-width: 800px;
+    padding: 30px 35px;
+    border-radius: 20px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    max-width: 680px;
     width: 100%;
     margin-bottom: 30px;
     border: 1px solid var(--border-color);
+    box-sizing: border-box;
+  }
+
+  .brand-header {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .brand-badge {
+    display: inline-block;
+    background: rgba(0, 230, 118, 0.12);
+    color: var(--lyka-light-green);
+    font-weight: 800;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 230, 118, 0.25);
+    margin-bottom: 8px;
   }
 
   h1 {
-    margin-top: 0;
-    text-align: center;
+    margin: 0;
     color: #ffffff;
-    font-size: 28px;
-    letter-spacing: 1px;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
   }
 
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
 
   label {
     display: block;
     margin-bottom: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #b0bec5;
+    font-size: 13px;
+    font-weight: 700;
+    color: #A3C2B0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
   .radio-group {
     display: flex;
-    gap: 20px;
+    gap: 15px;
   }
 
   .radio-card {
     flex: 1;
-    background: #263238;
+    background: var(--input-bg);
     border: 2px solid var(--border-color);
-    padding: 15px;
-    border-radius: 8px;
+    padding: 14px;
+    border-radius: 12px;
     cursor: pointer;
     text-align: center;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .radio-card input {
@@ -84,89 +112,120 @@
   }
 
   .radio-card.active {
-    border-color: var(--accent-color);
-    background: #1b382b;
+    border-color: var(--lyka-light-green);
+    background: rgba(0, 230, 118, 0.08);
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.15);
   }
 
   .radio-card span {
-    font-size: 18px;
-    font-weight: 900;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.5px;
   }
 
   .inputs-grid {
     display: flex;
-    flex-wrap: wrap;
     gap: 15px;
+    flex-wrap: wrap;
   }
 
   .input-box {
-    background: #263238;
-    border: 1px solid var(--border-color);
+    background: var(--input-bg);
+    border: 1.5px solid var(--border-color);
     color: #fff;
-    font-family: inherit;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 6px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 12px;
+    border-radius: 10px;
     text-transform: uppercase;
     text-align: center;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
   }
 
   .input-box:focus {
     outline: none;
-    border-color: var(--accent-color);
+    border-color: var(--lyka-light-green);
+    box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.2);
   }
 
   .area-code-input, .side-id-input {
-    width: 120px;
+    width: 100%;
+  }
+
+  .grid-col {
+    flex: 1;
+    min-width: 130px;
   }
 
   .location-id-group {
     display: flex;
-    gap: 8px;
+    gap: 6px;
   }
 
   .loc-digit {
-    width: 45px;
+    flex: 1;
+    width: 100%;
+    padding: 12px 4px;
   }
 
   .btn-container {
     display: flex;
-    gap: 15px;
-    margin-top: 25px;
+    gap: 12px;
+    margin-top: 28px;
   }
 
   .btn {
     flex: 1;
-    padding: 14px;
+    padding: 16px;
     border: none;
-    border-radius: 6px;
-    font-size: 18px;
-    font-weight: 900;
+    border-radius: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: opacity 0.2s ease;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 
   .btn-generate {
-    background-color: var(--accent-color);
-    color: #fff;
+    background-color: var(--lyka-light-green);
+    color: var(--lyka-dark);
+    box-shadow: 0 4px 14px rgba(0, 230, 118, 0.3);
+  }
+
+  .btn-generate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 230, 118, 0.4);
   }
 
   .btn-print {
-    background-color: #0288d1;
+    background-color: var(--lyka-accent);
     color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-print:hover {
+    background-color: #356a4b;
+    transform: translateY(-2px);
   }
 
   #preview-stage {
     background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 25px;
+    border-radius: 16px;
     overflow-x: auto;
     max-width: 100%;
     display: flex;
     justify-content: center;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
   }
 
   /* --- PRINT STYLES --- */
@@ -194,6 +253,7 @@
       display: block !important;
       width: 100% !important;
       height: 100% !important;
+      box-shadow: none !important;
     }
 
     .label-container-vertical {
@@ -207,6 +267,11 @@
       height: 2.1in !important;
       margin: 0 auto !important;
     }
+  }
+
+  /* Label Layout Base (Roboto Condensed for Labels) */
+  .label-container-horizontal, .label-container-vertical {
+    font-family: 'Roboto Condensed', sans-serif;
   }
 
   /* Horizontal Layout (Back Mode) */
@@ -379,7 +444,10 @@
 <body>
 
 <div class="app-container">
-  <h1>Rack Label Generator</h1>
+  <div class="brand-header">
+    <div class="brand-badge">Lyka Warehouse Tool</div>
+    <h1>Rack Label Generator</h1>
+  </div>
   
   <div class="form-group">
     <label>Layout Mode</label>
@@ -397,11 +465,11 @@
 
   <div class="form-group">
     <div class="inputs-grid">
-      <div>
+      <div class="grid-col">
         <label for="area-code">Area Code</label>
         <input type="text" id="area-code" class="input-box area-code-input" value="DSAB" maxlength="6">
       </div>
-      <div>
+      <div class="grid-col" style="flex: 1.2;">
         <label>Location ID</label>
         <div class="location-id-group">
           <input type="text" id="loc-1" class="input-box loc-digit" value="4" maxlength="1">
@@ -410,7 +478,7 @@
           <input type="text" id="loc-4" class="input-box loc-digit" value="0" maxlength="1">
         </div>
       </div>
-      <div>
+      <div class="grid-col">
         <label for="side-id">Side Identifier</label>
         <input type="text" id="side-id" class="input-box side-id-input" value="AF" maxlength="4">
       </div>
@@ -418,7 +486,7 @@
   </div>
 
   <div class="btn-container">
-    <button class="btn btn-generate" onclick="generateLabel()">GO</button>
+    <button class="btn btn-generate" onclick="generateLabel()">Generate Label</button>
     <button class="btn btn-print" onclick="window.print()">Print Label</button>
   </div>
 </div>
@@ -472,22 +540,18 @@
       return;
     }
 
-    // Grabs last character from Area Code (e.g., 'B' from 'DSAB')
     const letter = areaCode.slice(-1);
-    
-    // Grabs first digit from Location ID and zero-pads it (e.g., '4' -> '04')
     const rawAisle = locDigits.slice(0, 1);
     const aisleNum = rawAisle.padStart(2, '0');
-    
-    // Header format: B-04
     const locHeaderText = `${letter}-${aisleNum}`;
 
+    // Reordered from highest (40) to lowest (00) so 00 is adjacent to the bottom header
     const levels = [
-      { code: '00', color: 'color-white' },
-      { code: '10', color: 'color-pink' },
-      { code: '20', color: 'color-green' },
+      { code: '40', color: 'color-blue' },
       { code: '30', color: 'color-yellow' },
-      { code: '40', color: 'color-blue' }
+      { code: '20', color: 'color-green' },
+      { code: '10', color: 'color-pink' },
+      { code: '00', color: 'color-white' }
     ];
 
     const previewStage = document.getElementById('preview-stage');
