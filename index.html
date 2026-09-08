@@ -151,7 +151,7 @@
     box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.2);
   }
 
-  .area-code-input, .side-id-input {
+  .area-code-input, .side-id-input, .header-text-input {
     width: 100%;
   }
 
@@ -467,12 +467,12 @@
     <div class="inputs-grid">
       <div class="grid-col">
         <label for="area-code">Area Code</label>
-        <input type="text" id="area-code" class="input-box area-code-input" value="DSAB" maxlength="6">
+        <input type="text" id="area-code" class="input-box area-code-input" value="DSCA" maxlength="6">
       </div>
       <div class="grid-col" style="flex: 1.2;">
         <label>Location ID</label>
         <div class="location-id-group">
-          <input type="text" id="loc-1" class="input-box loc-digit" value="4" maxlength="1">
+          <input type="text" id="loc-1" class="input-box loc-digit" value="0" maxlength="1">
           <input type="text" id="loc-2" class="input-box loc-digit" value="2" maxlength="1">
           <input type="text" id="loc-3" class="input-box loc-digit" value="0" maxlength="1">
           <input type="text" id="loc-4" class="input-box loc-digit" value="0" maxlength="1">
@@ -483,6 +483,11 @@
         <input type="text" id="side-id" class="input-box side-id-input" value="AF" maxlength="4">
       </div>
     </div>
+  </div>
+
+  <div class="form-group">
+    <label for="header-text">Location Header Text</label>
+    <input type="text" id="header-text" class="input-box header-text-input" value="A-00" maxlength="10">
   </div>
 
   <div class="btn-container">
@@ -534,18 +539,13 @@
     const areaCode = document.getElementById('area-code').value.trim().toUpperCase();
     const locDigits = locInputs.map(i => i.value.trim().toUpperCase()).join('');
     const sideId = document.getElementById('side-id').value.trim().toUpperCase();
+    const headerText = document.getElementById('header-text').value.trim().toUpperCase();
 
-    if (!areaCode || locDigits.length < 4 || !sideId) {
+    if (!areaCode || locDigits.length < 4 || !sideId || !headerText) {
       alert("Please fill in all fields.");
       return;
     }
 
-    const letter = areaCode.slice(-1);
-    const rawAisle = locDigits.slice(0, 1);
-    const aisleNum = rawAisle.padStart(2, '0');
-    const locHeaderText = `${letter}-${aisleNum}`;
-
-    // Reordered from highest (40) to lowest (00) so 00 is adjacent to the bottom header
     const levels = [
       { code: '40', color: 'color-blue' },
       { code: '30', color: 'color-yellow' },
@@ -578,7 +578,7 @@
 
     const headerBlock = document.createElement('div');
     headerBlock.className = 'location-header';
-    headerBlock.innerHTML = `<div class="loc-text">${locHeaderText}</div>`;
+    headerBlock.innerHTML = `<div class="loc-text">${headerText}</div>`;
     container.appendChild(headerBlock);
 
     previewStage.appendChild(container);
