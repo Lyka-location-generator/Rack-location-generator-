@@ -257,14 +257,14 @@
     }
 
     .label-container-vertical {
-      width: 2.0in !important;
+      width: 2.45in !important;
       height: 8.2in !important;
       max-height: 96vh !important;
       margin: 0 auto !important;
     }
 
     .label-container-horizontal {
-      width: 9.5in !important;
+      width: 9.8in !important;
       height: 2.1in !important;
       margin: 0 auto !important;
     }
@@ -303,7 +303,7 @@
     background: #fff;
     width: 100%;
     text-align: center;
-    padding: 2px;
+    padding: 1px 0;
     flex-grow: 1;
     display: flex;
     align-items: center;
@@ -311,8 +311,8 @@
   }
 
   .label-container-horizontal .barcode-svg {
-    max-width: 95%;
-    height: 45px;
+    width: 98%;
+    height: 60px;
   }
 
   .label-container-horizontal .text-row {
@@ -357,7 +357,7 @@
 
   /* Vertical Layout (Front Mode) */
   .label-container-vertical {
-    width: 2.0in;
+    width: 2.45in;
     height: 8.2in;
     background: #ffffff;
     border: 2px solid #000;
@@ -377,7 +377,7 @@
     width: 100%;
     border-bottom: 2px solid #000;
     box-sizing: border-box;
-    padding-top: 2px;
+    padding-top: 1px;
   }
 
   .label-container-vertical .barcode-wrapper {
@@ -388,11 +388,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1px 0;
   }
 
   .label-container-vertical .barcode-svg {
-    max-width: 95%;
-    height: 32px;
+    width: 98%;
+    height: 52px;
   }
 
   .label-container-vertical .text-row {
@@ -406,7 +407,7 @@
   }
 
   .label-container-vertical .level-text {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 900;
     color: #000;
   }
@@ -414,7 +415,7 @@
   .label-container-vertical .check-digit {
     background: #000;
     color: #fff;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 900;
     padding: 1px 3px;
   }
@@ -424,7 +425,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 0.7in;
+    height: 0.65in;
     width: 100%;
     box-sizing: border-box;
   }
@@ -587,13 +588,13 @@
     const barcodeOptions = {
       format: "CODE128",
       lineColor: "#000000",
-      width: isHorizontal ? 1.0 : 0.85,
-      height: isHorizontal ? 36 : 28,
+      width: isHorizontal ? 1.8 : 1.65,
+      height: isHorizontal ? 55 : 48,
       displayValue: true,
-      fontSize: 8,
+      fontSize: 10,
       fontOptions: "bold",
       font: "monospace",
-      textMargin: 1,
+      textMargin: 2,
       margin: 0
     };
 
