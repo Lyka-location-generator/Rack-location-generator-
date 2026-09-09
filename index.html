@@ -18,7 +18,6 @@
     --lyka-green: #1E392A;
     --lyka-accent: #2D5A40;
     --lyka-light-green: #00E676;
-    --lyka-gold: #E2B049;
     --card-bg: #1A2820;
     --input-bg: #111D16;
     --text-color: #F3F7F4;
@@ -264,20 +263,20 @@
     }
 
     .label-container-horizontal {
-      width: 9.8in !important;
+      width: 10.2in !important;
       height: 2.1in !important;
       margin: 0 auto !important;
     }
   }
 
-  /* Label Layout Base (Roboto Condensed for Labels) */
+  /* Label Layout Base */
   .label-container-horizontal, .label-container-vertical {
     font-family: 'Roboto Condensed', sans-serif;
   }
 
   /* Horizontal Layout (Back Mode) */
   .label-container-horizontal {
-    width: 11.0in;
+    width: 10.5in;
     height: 2.1in;
     background: #ffffff;
     border: 2px solid #000;
@@ -297,13 +296,13 @@
     height: 100%;
     border-right: 2px solid #000;
     box-sizing: border-box;
+    padding: 4px 6px 0 6px; /* High quiet zone on sides */
   }
 
   .label-container-horizontal .barcode-wrapper {
     background: #fff;
     width: 100%;
     text-align: center;
-    padding: 1px 0;
     flex-grow: 1;
     display: flex;
     align-items: center;
@@ -311,12 +310,15 @@
   }
 
   .label-container-horizontal .barcode-svg {
-    width: 98%;
-    height: 60px;
+    width: 100%;
+    height: auto;
+    max-height: 70px;
   }
 
   .label-container-horizontal .text-row {
-    width: 100%;
+    width: calc(100% + 12px); /* Spans full width edge to edge */
+    margin-left: -6px;
+    margin-right: -6px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -326,7 +328,7 @@
   }
 
   .label-container-horizontal .level-text {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 900;
     color: #000;
   }
@@ -334,7 +336,7 @@
   .label-container-horizontal .check-digit {
     background: #000;
     color: #fff;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 900;
     padding: 1px 3px;
   }
@@ -344,13 +346,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.5in;
+    width: 1.4in;
     height: 100%;
     box-sizing: border-box;
   }
 
   .label-container-horizontal .loc-text {
-    font-size: 40px;
+    font-size: 38px;
     font-weight: 900;
     color: #000;
   }
@@ -377,7 +379,7 @@
     width: 100%;
     border-bottom: 2px solid #000;
     box-sizing: border-box;
-    padding-top: 1px;
+    padding-top: 2px;
   }
 
   .label-container-vertical .barcode-wrapper {
@@ -388,7 +390,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1px 0;
   }
 
   .label-container-vertical .barcode-svg {
@@ -588,14 +589,14 @@
     const barcodeOptions = {
       format: "CODE128",
       lineColor: "#000000",
-      width: isHorizontal ? 1.8 : 1.65,
-      height: isHorizontal ? 55 : 48,
+      width: isHorizontal ? 1.4 : 1.65,
+      height: isHorizontal ? 48 : 48,
       displayValue: true,
       fontSize: 10,
       fontOptions: "bold",
       font: "monospace",
-      textMargin: 2,
-      margin: 0
+      textMargin: 4,
+      margin: 10 /* Ensures 10px quiet zone on left & right */
     };
 
     levels.forEach(lvl => {
